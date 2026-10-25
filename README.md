@@ -23,9 +23,11 @@
 ├── index.html          トップページ（プロフィール・新刊・主な作品・主なクライアントワーク）
 ├── works/index.html    全作品リスト（https://1d4dd.com/works/）
 ├── 404.html            存在しないURLを開いたときのページ
+├── favicon.ico         古いブラウザ向けのアイコン（16・32・48px入り）
 ├── assets/
 │   ├── style.css       全ページ共通のスタイル（色・余白・部品）
-│   ├── favicon.svg     ブラウザのタブのアイコン
+│   ├── favicon.svg     ブラウザのタブのアイコン（灰色の角丸に、オレンジの「D」）
+│   ├── apple-touch-icon.png  iPhoneのホーム画面などに使う 180×180px のアイコン
 │   └── images/         画像の置き場所（profile.jpg＝プロフィール写真。書影・OGP画像もここへ）
 ├── CNAME               GitHub Pages 用の独自ドメイン設定（中身は 1d4dd.com）
 ├── .nojekyll           GitHub Pages の自動変換を止めるための空ファイル（消さない）
@@ -48,6 +50,7 @@
 | 文章ブロックの最大幅 | `--measure` | `640px` |
 
 - 書体は Noto Sans JP（Google Fonts）。
+- ファビコンは `--bg` の灰色の角丸四角に、`--accent` のオレンジで Noto Sans JP Bold の「D」を1文字（輪郭データ化済み）。変えるときは favicon.svg・favicon.ico・apple-touch-icon.png の3つを揃えて作り直す。
 - 配色は暗い版のみ（明るい版は作らない方針）。
 - スマホ（幅600px以下）ではヘッダーのナビゲーションとプロフィール写真を非表示にし、書影は画面幅いっぱいに表示。
 - プロフィール写真（assets/images/profile.jpg、600×600px）はプロフィール文の右に160px四方で表示。写真の余白も大事なので、切り抜きや色の加工はしない。
@@ -149,7 +152,6 @@
 - [ ] 新刊ボタン2つのリンク先（現在は無効表示）
 - [ ] OGP画像（SNSで共有されたときの画像。1200×630px）。用意したら `assets/images/ogp.png` に置き、
       index.html の `<head>` にあるコメントアウト部分を有効にする
-- [ ] 必要に応じてファビコンを本格的なものに差し替え（assets/favicon.svg）
 
 ## 7. Claude に修正を頼むときの進め方
 
