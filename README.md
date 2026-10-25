@@ -52,6 +52,7 @@
 | 文章ブロックの最大幅 | `--measure` | `640px` |
 
 - 書体は Noto Sans JP（Google Fonts）。
+- オレンジ・太字の見出し類（ロゴ・筆名・「主な作品」などの見出し・全作品リストの年・新刊の書名）はすべて 22px に揃える。
 - index.html の `<head>` 末尾に、検索エンジン向けの人物情報（JSON-LD）がある。プロフィール文を変えたら、ここの説明・受賞歴なども合わせて直す。公表前の情報は書かない。
 - 検索・SNS用の題名は「津久井五月｜1D4DD」（全作品リストは「全作品リスト｜1D4DD」）。説明文はプロフィール文の作風の一文を使う。
 - ファビコンは `--bg` の灰色の角丸四角に、`--accent` のオレンジで Noto Sans JP Bold の「D」を1文字（輪郭データ化済み）。変えるときは favicon.svg・favicon.ico・apple-touch-icon.png の3つを揃えて作り直す。
@@ -129,30 +130,38 @@
 - 次の新刊が出たら、新刊欄を差し替え、前の本は「主な作品」と全作品リストに残す。
 - プロフィール文の刊行に関する一文も見直す。
 
-### 5-5. 新刊欄を非表示にする・表示に戻す
+### 5-5. 新刊欄の表示・非表示と、情報が出るまでの「TBA」表示
 
-**現在（2026年10月時点）は新刊欄を非表示にしています。** 刊行情報を公開できるまでの措置です。
-要素に `hidden` を付けると、中身を残したまま表示だけを消せます。次の3か所がセットです。
+**現在（2026年10月時点）は、新刊欄を「No Image」と「TBA」で表示しています。**
+書名・出版社などは公表前のため、次の箇所をすべて TBA にしてある。
+
+| 場所 | 現在の表示 | 公表後に入れるもの |
+|---|---|---|
+| 新刊欄の書影 | `is-placeholder` の枠に「No Image」 | 書影画像（5-2） |
+| 新刊欄の日付 | `2027年xx月刊行予定` | 刊行年月 |
+| 新刊欄の書名 | `TBA` | 書名 |
+| 新刊欄の書誌 | `出版社 TBA` / `判型・ページ数 TBA` / `定価 TBA` | 出版社・判型・ページ数・定価 |
+| 新刊欄の紹介文 | `紹介文 TBA` | 紹介文 |
+| 新刊欄のボタン | 無効表示（`btn is-disabled`） | リンク（5-3） |
+| index.html「主な作品」長篇・中篇の先頭 | `2027.xx` ／ `TBA` ／ `長篇小説（刊行予定）` | 刊行年月・『書名』・出版社 |
+| works/index.html の 2027 年 | `xx月` ／ `TBA` ／ `長篇小説（刊行予定）` | 刊行月・『書名』・出版社 |
+
+公表されたら、上の表の右列の内容に差し替える。プロフィール文の「デビュー。」の後ろに
+「（年）、第二長篇『（書名）』を刊行。」を入れることも検討する。
+
+**新刊欄をもう一度隠したいとき**は、要素に `hidden` を付ける（中身は残り、表示だけが消える）。次の3か所がセット。
 
 | ファイル | 該当箇所 |
 |---|---|
-| index.html | `<section class="section" id="novel" hidden>`（新刊欄そのもの） |
-| index.html | ヘッダーのナビ `<a href="#novel" hidden>新刊</a>` |
-| works/index.html | ヘッダーのナビ `<a href="/#novel" hidden>新刊</a>` |
-
-**表示に戻すとき**は、この3か所の ` hidden` を消す。あわせて次の3つも元に戻す（非表示にした際に外したもの）。
-
-- プロフィール文：「デビュー。」の後ろに「（年）、第二長篇『（書名）』を刊行。」を入れる
-- index.html「主な作品」の長篇・中篇の先頭に
-  `<li class="row"><span class="row__date">2027.01</span><div class="row__body"><p>『（書名）』</p><p class="row__meta">（出版社）</p></div></li>`
-- works/index.html の一番上（2026年の前）に、2027年の見出しと
-  `<li class="row"><span class="row__date">1月</span><div class="row__body"><p>『（書名）』</p><p class="row__meta">（出版社）</p></div></li>`
+| index.html | `<section class="section" id="novel">` → `<section class="section" id="novel" hidden>` |
+| index.html | ヘッダーのナビ `<a href="#novel">新刊</a>` → `<a href="#novel" hidden>新刊</a>` |
+| works/index.html | ヘッダーのナビ `<a href="/#novel">新刊</a>` → `<a href="/#novel" hidden>新刊</a>` |
 
 注意：`hidden` は表示を消すだけで、HTMLのソースを見れば中身は読める。まだ公にできない情報は、`hidden` に頼らず文言そのものを伏せること。
 
 ## 6. 未確定・今後の作業（TODO）
 
-- [ ] 新刊欄の再表示（5-5）。公表前の情報（書名・出版社など）は、このリポジトリが公開されているため書かないこと。あわせて書影、判型・ページ数・定価、紹介文を確定版に（現在はダミー）
+- [ ] 新刊情報の公表後、5-5 の表に沿って TBA を差し替える。公表前の情報（書名・出版社など）は、このリポジトリが公開されているため書かないこと。あわせて書影、判型・ページ数・定価、紹介文を確定版に（現在はダミー）
 - [ ] 新刊ボタン2つのリンク先（現在は無効表示）
 - [ ] OGP画像（assets/images/ogp.png、1200×630px）は今は「1D4DD」の文字だけの仮版。新刊の書影が届いたら書影入りに差し替える
 
@@ -181,5 +190,17 @@ Squarespace の DNS レコード（ウェブサイト用）
 
 ドメインの DNS は **Squarespace**（account.squarespace.com → ドメイン → 1d4dd.com → DNS設定）で管理。
 メールは Google Workspace で、MX・SPF（TXT @）・DKIM（TXT google._domainkey）の3行がメール用。
+
+そのほかの TXT レコード（所有確認用。消さないこと）
+| 種類 | ホスト | 値 | 用途 |
+|---|---|---|---|
+| TXT | `_github-pages-challenge-tsukui-itsuki` | （GitHub が発行した確認コード） | GitHub Pages のドメイン所有確認 |
+| TXT | @ | `google-site-verification=…` | Google Search Console の所有確認 |
+
+※ @ には TXT が2つ（SPF と Search Console）並ぶが、それで正しい。どちらかを消すとメールの到達か Search Console の確認に影響する。
+
+Google Search Console
+- プロパティ：ドメイン `1d4dd.com`（上の TXT で確認済み）
+- サイトマップ：`https://1d4dd.com/sitemap.xml` を送信済み
 
 ※ MX レコード（メール用）は変更しない。
