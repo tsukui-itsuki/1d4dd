@@ -11,9 +11,9 @@
 - ビルド不要の静的サイト（HTML と CSS だけ）。JavaScript は使っていません。
 - ファイルを GitHub リポジトリに置き、**GitHub Pages** で公開しています。
   リポジトリのファイルを更新すると、1〜数分で https://1d4dd.com に反映されます。
-- ドメイン（1d4dd.com）は **Square** で取得・管理しています。
-  DNS は Square の管理画面で GitHub Pages を向いています（下の「8. 公開・ドメインの設定」）。
-- メール（tsukui@1d4dd.com）も同じドメインの DNS（MX レコード）で動いています。
+- ドメイン（1d4dd.com）は **Squarespace** で取得・管理しています。
+  DNS は Squarespace の管理画面で GitHub Pages を向いています（下の「8. 公開・ドメインの設定」）。
+- メール（tsukui@1d4dd.com、Google Workspace）も同じドメインの DNS（MX レコードなど）で動いています。
   **DNS を触るときは MX レコードに手を付けないこと。**
 
 ## 2. ファイル構成
@@ -121,9 +121,30 @@
 - 次の新刊が出たら、新刊欄を差し替え、前の本は「主な作品」と全作品リストに残す。
 - プロフィール文の刊行に関する一文も見直す。
 
+### 5-5. 新刊欄を非表示にする・表示に戻す
+
+**現在（2026年10月時点）は新刊欄を非表示にしています。** 刊行情報を公開できるまでの措置です。
+要素に `hidden` を付けると、中身を残したまま表示だけを消せます。次の3か所がセットです。
+
+| ファイル | 該当箇所 |
+|---|---|
+| index.html | `<section class="section" id="novel" hidden>`（新刊欄そのもの） |
+| index.html | ヘッダーのナビ `<a href="#novel" hidden>新刊</a>` |
+| works/index.html | ヘッダーのナビ `<a href="/#novel" hidden>新刊</a>` |
+
+**表示に戻すとき**は、この3か所の ` hidden` を消す。あわせて次の3つも元に戻す（非表示にした際に外したもの）。
+
+- プロフィール文：「デビュー。」の後ろに「27年、第二長篇『33℃の骸』を刊行。」を入れる
+- index.html「主な作品」の長篇・中篇の先頭に
+  `<li class="row"><span class="row__date">2027.01</span><div class="row__body"><p>『33℃の骸』</p><p class="row__meta">早川書房</p></div></li>`
+- works/index.html の一番上（2026年の前）に、2027年の見出しと
+  `<li class="row"><span class="row__date">1月</span><div class="row__body"><p>『33℃の骸』</p><p class="row__meta">早川書房</p></div></li>`
+
+注意：`hidden` は表示を消すだけで、HTMLのソースを見れば中身は読める。まだ公にできない情報は、`hidden` に頼らず文言そのものを伏せること。
+
 ## 6. 未確定・今後の作業（TODO）
 
-- [ ] 新刊『33℃の骸』の書影、判型・ページ数・定価、紹介文（現在はダミー）
+- [ ] 新刊欄の再表示（5-5）。あわせて書影、判型・ページ数・定価、紹介文を確定版に（現在はダミー）
 - [ ] 新刊ボタン2つのリンク先（現在は無効表示）
 - [ ] OGP画像（SNSで共有されたときの画像。1200×630px）。用意したら `assets/images/ogp.png` に置き、
       index.html の `<head>` にあるコメントアウト部分を有効にする
@@ -131,7 +152,8 @@
 
 ## 7. Claude に修正を頼むときの進め方
 
-- GitHub リポジトリを Claude のチャットに追加（接続）して、「README.md を読んでから、〇〇を直して」と頼む。
+- GitHub リポジトリ（`tsukui-itsuki/1d4dd`）を Claude のチャットに追加（接続）して、「README.md を読んでから、〇〇を直して」と頼む。
+  Claude が修正を `main` に保存（コミット・プッシュ）すると、GitHub Pages が自動で公開し直す。
 - 文字の誤りなど小さな修正は、GitHub の画面でファイルを開き、鉛筆アイコンから直接編集してもよい。
 - 変更の履歴は GitHub に残るので、問題があれば以前の状態に戻せる。
 - 修正後は、PC幅とスマホ幅の両方で表示を確認する。
@@ -142,13 +164,16 @@ GitHub Pages（Settings → Pages）
 - Source：Deploy from a branch ／ Branch：`main`、フォルダ：`/ (root)`
 - Custom domain：`1d4dd.com`、Enforce HTTPS：オン
 
-Square の DNS レコード（ウェブサイト用）
+Squarespace の DNS レコード（ウェブサイト用）
 | 種類 | ホスト | 値 |
 |---|---|---|
 | A | @ | 185.199.108.153 |
 | A | @ | 185.199.109.153 |
 | A | @ | 185.199.110.153 |
 | A | @ | 185.199.111.153 |
-| CNAME | www | （GitHubのユーザー名）.github.io |
+| CNAME | www | tsukui-itsuki.github.io |
+
+ドメインの DNS は **Squarespace**（account.squarespace.com → ドメイン → 1d4dd.com → DNS設定）で管理。
+メールは Google Workspace で、MX・SPF（TXT @）・DKIM（TXT google._domainkey）の3行がメール用。
 
 ※ MX レコード（メール用）は変更しない。
