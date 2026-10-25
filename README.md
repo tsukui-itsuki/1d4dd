@@ -29,6 +29,8 @@
 │   ├── favicon.svg     ブラウザのタブのアイコン（灰色の角丸に、オレンジの「D」）
 │   ├── apple-touch-icon.png  iPhoneのホーム画面などに使う 180×180px のアイコン
 │   └── images/         画像の置き場所（profile.jpg＝プロフィール写真、ogp.png＝SNS共有用画像。書影もここへ）
+├── sitemap.xml         検索エンジン向けのページ一覧（ページを増やしたら追記し、lastmod を更新）
+├── robots.txt          検索エンジン向けの設定（全ページ許可・サイトマップの場所）
 ├── CNAME               GitHub Pages 用の独自ドメイン設定（中身は 1d4dd.com）
 ├── .nojekyll           GitHub Pages の自動変換を止めるための空ファイル（消さない）
 └── README.md           このファイル
@@ -50,6 +52,7 @@
 | 文章ブロックの最大幅 | `--measure` | `640px` |
 
 - 書体は Noto Sans JP（Google Fonts）。
+- index.html の `<head>` 末尾に、検索エンジン向けの人物情報（JSON-LD）がある。プロフィール文を変えたら、ここの説明・受賞歴なども合わせて直す。公表前の情報は書かない。
 - 検索・SNS用の題名は「津久井五月｜1D4DD」（全作品リストは「全作品リスト｜1D4DD」）。説明文はプロフィール文の作風の一文を使う。
 - ファビコンは `--bg` の灰色の角丸四角に、`--accent` のオレンジで Noto Sans JP Bold の「D」を1文字（輪郭データ化済み）。変えるときは favicon.svg・favicon.ico・apple-touch-icon.png の3つを揃えて作り直す。
 - 配色は暗い版のみ（明るい版は作らない方針）。
