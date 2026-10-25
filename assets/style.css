@@ -199,8 +199,6 @@ a:hover .ul, a.ul:hover { text-decoration-thickness: 2px; }
   font-size: 14px;
   line-height: 1.7;
   color: var(--sub);
-  columns: 2 240px;
-  column-gap: 24px;
 }
 
 /* ---------- 全作品リスト ---------- */
