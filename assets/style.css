@@ -103,7 +103,10 @@ a:hover .ul, a.ul:hover { text-decoration-thickness: 2px; }
 
 /* ---------- プロフィール ---------- */
 
-.profile { padding-top: 72px; padding-bottom: 56px; display: flex; flex-direction: column; gap: 12px; }
+.profile { padding-top: 72px; padding-bottom: 56px; display: flex; align-items: flex-start; gap: 48px; }
+.profile__main { flex: 0 1 var(--measure); min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+/* 写真は右端（ナビゲーションの右端）に揃える。スマホでは非表示 */
+.profile__photo { flex: 0 0 160px; width: 160px; height: 160px; margin-left: auto; border-radius: 4px; display: block; }
 .profile__name { font-size: 22px; font-weight: 700; line-height: 1.5; color: var(--accent); }
 .profile__name-en { font-size: 14px; font-weight: 400; color: var(--sub); }
 .profile__text { max-width: var(--measure); }
@@ -224,6 +227,7 @@ a:hover .ul, a.ul:hover { text-decoration-thickness: 2px; }
 
 @media (max-width: 600px) {
   .site-nav { display: none; }
+  .profile__photo { display: none; }
   .newbook__cover { flex-basis: 100%; }
   .newbook__body { flex-basis: 100%; }
 }
