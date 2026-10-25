@@ -13,7 +13,7 @@
   リポジトリのファイルを更新すると、1〜数分で https://1d4dd.com に反映されます。
 - ドメイン（1d4dd.com）は **Squarespace** で取得・管理しています。
   DNS は Squarespace の管理画面で GitHub Pages を向いています（下の「8. 公開・ドメインの設定」）。
-- メール（tsukui@1d4dd.com、Google Workspace）も同じドメインの DNS（MX レコードなど）で動いています。
+- メール（tsukui［at］1d4dd.com、Google Workspace）も同じドメインの DNS（MX レコードなど）で動いています。
   **DNS を触るときは MX レコードに手を付けないこと。**
 
 ## 2. ファイル構成
@@ -96,14 +96,14 @@
 
 ### 5-2. 新刊の書影を入れる
 
-1. 画像を `assets/images/` に置く（例：`assets/images/cover-33c.jpg`。横幅 600〜800px 程度、JPEG）。
+1. 画像を `assets/images/` に置く（例：`assets/images/cover.jpg`。横幅 600〜800px 程度、JPEG）。
 2. index.html の新刊欄で、次の行を
    ```html
    <div class="newbook__cover is-placeholder">No Image</div>
    ```
    次のように置き換える（`is-placeholder` を外す）。
    ```html
-   <div class="newbook__cover"><img src="/assets/images/cover-33c.jpg" alt="『33℃の骸』書影" width="600" height="860"></div>
+   <div class="newbook__cover"><img src="/assets/images/cover.jpg" alt="『（書名）』書影" width="600" height="860"></div>
    ```
    書影は装丁家・出版社の著作物でもあるので、掲載前に担当編集者に確認する。
 
@@ -112,7 +112,7 @@
 リンク先が決まったら、`<span class="btn is-disabled" aria-disabled="true">…</span>` を次の形に置き換える。
 
 ```html
-<a class="btn" href="https://www.hayakawa-online.co.jp/..." target="_blank" rel="noopener">出版社のページ<span class="ar" aria-hidden="true">↗</span></a>
+<a class="btn" href="https://（出版社の本のページのURL）" target="_blank" rel="noopener">出版社のページ<span class="ar" aria-hidden="true">↗</span></a>
 ```
 
 ### 5-4. 新刊が刊行されたら
@@ -134,17 +134,17 @@
 
 **表示に戻すとき**は、この3か所の ` hidden` を消す。あわせて次の3つも元に戻す（非表示にした際に外したもの）。
 
-- プロフィール文：「デビュー。」の後ろに「27年、第二長篇『33℃の骸』を刊行。」を入れる
+- プロフィール文：「デビュー。」の後ろに「（年）、第二長篇『（書名）』を刊行。」を入れる
 - index.html「主な作品」の長篇・中篇の先頭に
-  `<li class="row"><span class="row__date">2027.01</span><div class="row__body"><p>『33℃の骸』</p><p class="row__meta">早川書房</p></div></li>`
+  `<li class="row"><span class="row__date">2027.01</span><div class="row__body"><p>『（書名）』</p><p class="row__meta">（出版社）</p></div></li>`
 - works/index.html の一番上（2026年の前）に、2027年の見出しと
-  `<li class="row"><span class="row__date">1月</span><div class="row__body"><p>『33℃の骸』</p><p class="row__meta">早川書房</p></div></li>`
+  `<li class="row"><span class="row__date">1月</span><div class="row__body"><p>『（書名）』</p><p class="row__meta">（出版社）</p></div></li>`
 
 注意：`hidden` は表示を消すだけで、HTMLのソースを見れば中身は読める。まだ公にできない情報は、`hidden` に頼らず文言そのものを伏せること。
 
 ## 6. 未確定・今後の作業（TODO）
 
-- [ ] 新刊欄の再表示（5-5）。あわせて書影、判型・ページ数・定価、紹介文を確定版に（現在はダミー）
+- [ ] 新刊欄の再表示（5-5）。公表前の情報（書名・出版社など）は、このリポジトリが公開されているため書かないこと。あわせて書影、判型・ページ数・定価、紹介文を確定版に（現在はダミー）
 - [ ] 新刊ボタン2つのリンク先（現在は無効表示）
 - [ ] OGP画像（SNSで共有されたときの画像。1200×630px）。用意したら `assets/images/ogp.png` に置き、
       index.html の `<head>` にあるコメントアウト部分を有効にする
