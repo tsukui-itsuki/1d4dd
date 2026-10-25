@@ -179,6 +179,8 @@ a:hover .ul, a.ul:hover { text-decoration-thickness: 2px; }
 .row__body { flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 /* 媒体名・企業名：括弧の空き分（半文字）だけ右に寄せて、題名の頭と揃える */
 .row__meta { padding-left: 8px; font-size: 14px; color: var(--sub); }
+/* 媒体名・企業名の中の区切りの「/」（半角。前後に余白を取る） */
+.sep { margin: 0 0.75em; }
 
 .tag {
   display: inline-block;
