@@ -110,7 +110,8 @@ a:hover .ul, a.ul:hover { text-decoration-thickness: 2px; }
 .profile__photo { flex: 0 0 160px; width: 160px; height: 160px; margin-left: auto; border-radius: 4px; display: block; }
 .profile__name { font-size: 22px; font-weight: 700; line-height: 1.5; color: var(--accent); }
 .profile__name-en { font-size: 14px; font-weight: 400; color: var(--sub); }
-.profile__text { max-width: var(--measure); }
+/* プロフィール文：PCで4行に収まり、最終行もほぼ埋まる幅（文言を変えたら調整） */
+.profile__text { max-width: 36em; }
 .profile__contact { margin-top: 8px; font-size: 15px; color: var(--sub); }
 .profile__contact span { color: var(--accent); }
 
@@ -165,7 +166,8 @@ a:hover .ul, a.ul:hover { text-decoration-thickness: 2px; }
 
 /* ---------- 作品・クライアントワークの行 ---------- */
 
-.lead { max-width: var(--measure); font-size: 15px; color: var(--sub); }
+/* クライアントワークの説明文：下のリストの罫線と同じ幅で折り返す */
+.lead { font-size: 15px; color: var(--sub); }
 
 .row {
   display: flex;
